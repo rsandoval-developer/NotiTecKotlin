@@ -9,14 +9,14 @@ import android.support.v7.app.AppCompatActivity
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    abstract fun layoutResId(): Int
+    abstract fun getLayoutResId(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layoutResId())
-        initView()
+        setContentView(getLayoutResId())
+        initView(savedInstanceState)
     }
-    open fun initView() {
+    open fun initView(savedInstanceState: Bundle?) {
 
     }
 }

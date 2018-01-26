@@ -1,5 +1,6 @@
 package com.itsch.notitec2
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.itsch.commons.BaseActivity
 import com.itsch.notitec2.inicio.InicioFragment
@@ -9,32 +10,29 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : BaseActivity() {
-    override fun layoutResId() = R.layout.activity_main
     val ID_DEFAULT_FRAGMENT = R.id.inicio
+
     val fragments: HashMap<Int, Fragment> = hashMapOf(
-            Pair(R.id.inicio, InicioFragment()),
-            Pair(R.id.servicios, ServiciosFragment()),
-            Pair(R.id.login, LoginFragment())
+            Pair(R.id.inicio, InicioFragment())
     )
 
-    override fun initView() {
-        super.initView()
-        setSupportActionBar(toolbar)
-        navigationMenu.selectedItemId = ID_DEFAULT_FRAGMENT
-        initViewFragment()
-        navigationMenu
-                .setOnNavigationItemSelectedListener { item ->
-                    val fragment: Fragment? = fragments[item.itemId]
-                    replaceFragment(fragment)
-                    true
-                }
-    }
+    override fun getLayoutResId() = R.layout.activity_main
 
-    private fun replaceFragment(fragment: Fragment?) {
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, fragment)
-                .commit()
+
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
+        setSupportActionBar(toolbar)
+        initViewFragment()
+        navigationMenu.selectedItemId = R.id.inicio
+        navigationMenu.setOnNavigationItemSelectedListener { item ->
+            val fragment: Fragment? = fragments[item.itemId]
+
+            if (fragment != null)
+                replaceFragment(R.id.fragmentContainer, fragment)
+
+            true
+        }
+
     }
 
     private fun initViewFragment() {
@@ -47,7 +45,15 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun defaultFragment(): Fragment? {
-        return fragments[ID_DEFAULT_FRAGMENT]
+    private fun replaceFragment(container: Int, fragment: Fragment) {
+        supportFragmentManager
+                .beginTransaction()
+                .replace(container, fragment)
+                .commit()
     }
+
+    private fun defaultFragment() = fragments[ID_DEFAULT_FRAGMENT]
+
+
 }
+

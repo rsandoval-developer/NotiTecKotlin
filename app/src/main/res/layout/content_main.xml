@@ -15,14 +15,13 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-<android.support.design.widget.BottomNavigationView
-    android:id="@+id/navigationMenu"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:itemBackground="@color/colorAccent"
-    app:itemIconTint="@color/selector_item_bottom_navigation_color"
-    app:menu="@menu/bottom_navigation_menu"
-    app:itemTextColor="@color/selector_item_bottom_navigation_color"
-    />
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/colorAccent"
+        app:itemIconTint="@color/selector_item_bottom_navigation_color"
+        app:itemTextColor="@color/selector_item_bottom_navigation_color"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </LinearLayout>

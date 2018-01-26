@@ -9,10 +9,11 @@ import android.view.ViewGroup
 /**
  * Created by Isma-Developer on 1/25/2018.
  */
-abstract class BaseFragment : Fragment(){
-abstract fun getLayoutResId(): Int
+abstract class BaseFragment : Fragment() {
+    abstract fun getLayoutResId(): Int
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutResId(),container,false)
+        return inflater.inflate(getLayoutResId(), container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -20,8 +21,8 @@ abstract fun getLayoutResId(): Int
         initView()
     }
 
-    private fun initView() {
-
+    open fun initView() {
     }
+
 
 }
